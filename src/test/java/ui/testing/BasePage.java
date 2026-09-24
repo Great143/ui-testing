@@ -46,6 +46,7 @@ public class BasePage {
     protected String getText(By locator) {
         return find(locator).getText();
     }
+
     public void scrollTo (By locator) {
         WebElement element = find(locator);
         Actions actions = new Actions(driver);
@@ -69,6 +70,10 @@ public class BasePage {
         Select select = new Select(element);
         select.selectByVisibleText(text);
 
+    }
+
+    protected WebElement findPresent(By locator) {
+        return wait.until(ExpectedConditions.presenceOfElementLocated(locator));
     }
 
 //    public void select(By locator) {
