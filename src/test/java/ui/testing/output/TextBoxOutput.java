@@ -23,16 +23,18 @@ public class TextBoxOutput extends BasePage {
 
     public String getEmail() {
         String email = getWait().until(ExpectedConditions.visibilityOfElementLocated(EMAIL_INPUT)).getText().replace("Email:", "");
+        email.substring("Email:".length());
+        System.out.println(email + "Вызов из TextboxOutput");
         return email;
     }
 
     public String getCurrentAddress() {
-        String currentAddress = getWait().until(ExpectedConditions.visibilityOfElementLocated(CURRENT_ADDRESS)).getText().replace("Current Address :", "");
+        String currentAddress = getWait().until(ExpectedConditions.visibilityOfElementLocated(CURRENT_ADDRESS)).getText();
         return currentAddress;
     }
 
     public String getPermanentAddress() {
-        String permanentAddress = getWait().until(ExpectedConditions.visibilityOfElementLocated(PERMANENT_ADDRESS)).getText().replace("Permananet Address :", "");
+        String permanentAddress = getWait().until(ExpectedConditions.visibilityOfElementLocated(PERMANENT_ADDRESS)).getText();
         return permanentAddress;
     }
 }

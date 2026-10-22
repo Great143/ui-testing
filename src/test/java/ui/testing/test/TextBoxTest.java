@@ -15,7 +15,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class TextBoxTest extends BaseTest {
 
     @Test
-    void fillTextBox() {
+    void fillTextBox() throws InterruptedException {
         TextData textData = TextBoxData.defaultTextData();
         TextBoxPage textBoxPage = new TextBoxPage(getDriver());
         TextBoxOutput output = textBoxPage
@@ -25,6 +25,7 @@ public class TextBoxTest extends BaseTest {
                 .fieldCurrentAddress(textData.getCurrentAddress())
                 .fieldPermanentAddress(textData.getPermanentAddress())
                 .clickSubmitButton();
+        Thread.sleep(3000);
         Assertions.assertAll(
                 () -> assertEquals(textData.getFullName(), output.getName()),
                 () -> assertEquals(textData.getEmail(), output.getEmail()),
