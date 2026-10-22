@@ -4,6 +4,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.chromium.ChromiumDriver;
 import org.openqa.selenium.chromium.ChromiumDriverInfo;
 
@@ -17,6 +18,9 @@ public class BaseTest {
 
     @BeforeEach
     public void setUp() {
+        ChromeOptions options = new ChromeOptions();
+        options.addArguments("--headless=new");
+        options.addArguments("--window-size=1920,1080");
         driver = new ChromeDriver();
         driver.manage().window().maximize();
     }
