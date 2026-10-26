@@ -18,4 +18,5 @@ public class Student {
     private final String birthDate;
     private final State state;
     private final City city;
+
 }
