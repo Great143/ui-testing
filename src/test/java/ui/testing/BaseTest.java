@@ -26,7 +26,6 @@ public class BaseTest {
         options.setBinary("/usr/bin/google-chrome");
         driver = new ChromeDriver(options);
         driver.manage().window().maximize();
-
     }
 
     @AfterEach
