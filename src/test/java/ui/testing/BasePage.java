@@ -1,5 +1,6 @@
 package ui.testing;
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.junit.jupiter.api.BeforeEach;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -33,11 +34,27 @@ public class BasePage {
                 ExpectedConditions.visibilityOfElementLocated(locator)
         );
     }
-    protected void click(By locator) {
-        wait.until(
-                ExpectedConditions.elementToBeClickable(locator)
-        ).click();
+//    protected void click(By locator) {
+//        wait.until(
+//                ExpectedConditions.elementToBeClickable(locator)
+//        ).click();
+//    }
+
+    public void click(WebElement element) {
+        try {
+            // Прокручиваем страницу к элементу, чтобы он был по центру
+            ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView({block: 'center'});", element);
+
+            // Небольшая пауза, чтобы анимация прокрутки завершилась
+            Thread.sleep(500);
+
+            element.click();
+        } catch (Exception e) {
+            // Если обычный клик не сработал, кликаем через JavaScript
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+        }
     }
+
     protected void type(By locator, String text) {
         WebElement element = find(locator);
         element.clear();
